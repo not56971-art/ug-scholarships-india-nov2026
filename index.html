@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India UG Scholarships - Recent List (Nov 2026)</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #10b981;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        header p { opacity: 0.9; font-size: 1.1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        input, select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 200px;
+        }
+        input:focus, select:focus { outline: 2px solid var(--secondary); border-color: transparent; }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid var(--accent);
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .card h2 { color: var(--primary); font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .amount { font-size: 1.1rem; font-weight: 700; color: var(--accent); margin: 0.5rem 0; }
+        .deadline { background: #fef3c7; color: #92400e; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.85rem; display: inline-block; margin: 0.5rem 0; }
+        .eligibility { color: var(--muted); font-size: 0.95rem; margin-top: 0.75rem; }
+        .footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.9rem; }
+        .no-results { text-align: center; padding: 3rem; color: var(--muted); grid-column: 1 / -1; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6rem; }
+            .controls { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎓 India Undergraduate Scholarships</h1>
+        <p>Recent opportunities published / open in the last 7 days (as of 1 Nov 2026)</p>
+        <p style="margin-top:0.5rem; font-size:0.95rem;">Always verify details on official portals before applying</p>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <input type="text" id="search" placeholder="Search by name or keyword..." oninput="filterScholarships()">
+            <select id="deadlineFilter" onchange="filterScholarships()">
+                <option value="all">All Deadlines</option>
+                <option value="soon">Closing Soon (≤31 Oct)</option>
+                <option value="nov">November Deadlines</option>
+            </select>
+        </div>
+        <div class="cards" id="cards"></div>
+    </div>
+
+    <div class="footer">
+        <p>Data compiled from public sources (The Hindu, Hindustan Gazette, Buddy4Study, official portals). Last updated: 1 November 2026.</p>
+        <p>This is an informational site. Always confirm eligibility, amounts, and deadlines on the official application portals.</p>
+    </div>
+
+    <script>
+        const scholarships = [
+            {
+                name: "Sakal India Foundation Career Development Scholarship 2026",
+                amount: "Up to ₹10,000",
+                deadline: "31 October 2026",
+                eligibility: "Indian residents who have completed at least Class 10, secured minimum 85% aggregate in previous class, and have a valid admission letter. Family income proof required.",
+                category: "soon"
+            },
+            {
+                name: "Vahani Scholarship 2026",
+                amount: "Full UG tuition fees + laptop stipend, travel, books, accommodation support",
+                deadline: "1 November 2026",
+                eligibility: "Students currently in Class 12 who secured 85% or above in Class 10 and have annual family income less than ₹3,00,000. Leads to full support for undergraduate education.",
+                category: "soon"
+            },
+            {
+                name: "SDEF India Scholarship Programme 2026-27",
+                amount: "Up to ₹50,000 per year (up to ₹2 lakh over 4 years)",
+                deadline: "30 November 2026",
+                eligibility: "First-year students in professional UG programmes (B.Tech/B.E., MBBS, BDS, B.Arch). Strong academic record. Annual family income ≤ ₹12 lakh.",
+                category: "nov"
+            },
+            {
+                name: "Satya Scholarship Programme 2026",
+                amount: "100% annual course fee + hostel, accommodation & meal support",
+                deadline: "15 November 2026",
+                eligibility: "First-year Medical & Health Sciences (MBBS, BDS, BPT, B.Sc. Nursing, Allied Health) from Punjab/Ludhiana area. ≥60% in Class 12. Family income ≤ ₹8 lakh. Preference to girls, PwD, orphans.",
+                category: "nov"
+            },
+            {
+                name: "WINGS Scholarship (Women INspiring Growth in STEM)",
+                amount: "Approx. ₹2 lakh per year towards tuition",
+                deadline: "31 October 2026",
+                eligibility: "Female students planning to pursue UG STEM courses at IIT Bombay (2027-28 session). Must maintain minimum CPI of 6.0. Not already receiving another government tuition grant.",
+                category: "soon"
+            },
+            {
+                name: "Infocepts Innovate for Impact Scholarship 2026-27",
+                amount: "Up to ₹50,000 per academic year (up to 4 years)",
+                deadline: "30 October 2026",
+                eligibility: "UG students in Computer Engineering, IT, AI/ML or Data Science. ≥60% in Classes 10 and 12. Family income ≤ ₹6 lakh. Studying or domiciled in Nagpur, Pune, Chennai or Bengaluru.",
+                category: "soon"
+            },
+            {
+                name: "HDFC Parivartan ECSS Programme 2026-27",
+                amount: "Up to ₹50,000 for Professional UG (₹30,000 for General UG)",
+                deadline: "31 October 2026",
+                eligibility: "Indian nationals with ≥55% marks. Annual family income ≤ ₹2.5 lakh. Preference to students who faced personal/family crisis in past 3 years. Open to Class 1 to PG.",
+                category: "soon"
+            },
+            {
+                name: "IndiaAI Fellowship 2026",
+                amount: "Up to ₹1 lakh for UG students",
+                deadline: "30 November 2026",
+                eligibility: "Undergraduate students (typically final year) working on AI-related projects/research. Specific semester requirements apply. Under IndiaAI Mission (MeitY).",
+                category: "nov"
+            },
+            {
+                name: "Mahindra Saarthi Abhiyaan 2026-27",
+                amount: "₹10,000 (one-time)",
+                deadline: "30 November 2026",
+                eligibility: "Daughters or wards of truck drivers. Studying in Class 11, 12, diploma, undergraduate or postgraduate courses. Open across India.",
+                category: "nov"
+            },
+            {
+                name: "Dr. Reddy’s Sashakt Scholarship for Girls 2026",
+                amount: "Up to ₹2.4 lakh (₹80,000/year for 3 years) + mentorship",
+                deadline: "31 October 2026",
+                eligibility: "Bright girl students with academic excellence aiming for B.Sc. pure sciences / Life Sciences at top colleges. Special emphasis on research interest.",
+                category: "soon"
+            }
+        ];
+
+        function renderCards(list) {
+            const container = document.getElementById('cards');
+            if (list.length === 0) {
+                container.innerHTML = '<div class="no-results">No scholarships match your search.</div>';
+                return;
+            }
+            container.innerHTML = list.map(s => `
+                <div class="card">
+                    <h2>${s.name}</h2>
+                    <div class="amount">💰 ${s.amount}</div>
+                    <div class="deadline">📅 Deadline: ${s.deadline}</div>
+                    <div class="eligibility"><strong>Eligibility:</strong> ${s.eligibility}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterScholarships() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const deadline = document.getElementById('deadlineFilter').value;
+            const filtered = scholarships.filter(s => {
+                const matchesSearch = s.name.toLowerCase().includes(query) || s.eligibility.toLowerCase().includes(query);
+                const matchesDeadline = deadline === 'all' || s.category === deadline;
+                return matchesSearch && matchesDeadline;
+            });
+            renderCards(filtered);
+        }
+
+        // Initial render
+        renderCards(scholarships);
+    </script>
+</body>
+</html>
